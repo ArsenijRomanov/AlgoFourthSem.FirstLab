@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalOptimization", "Globa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalOptimization.Avalonia", "GlobalOptimization.Avalonia\GlobalOptimization.Avalonia.csproj", "{CE0A1CC5-3120-4AA4-8381-C3BA44569FC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analysis", "Analysis\Analysis.csproj", "{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{CE0A1CC5-3120-4AA4-8381-C3BA44569FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0A1CC5-3120-4AA4-8381-C3BA44569FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0A1CC5-3120-4AA4-8381-C3BA44569FC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,116 @@
+{
+  "suite_id": "lab1_main",
+  "objective_id": "function_v8",
+  "seeds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 
+    21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 
+    61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 
+    81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
+  "budget": {
+    "max_iterations": 200,
+    "max_evaluations": null
+  },
+  "metrics": {
+    "known_optimal_fitness": 0.0,
+    "thresholds": [0.1, 0.01, 0.001, 0.0001, 0.000001],
+    "log_error_epsilon": 1e-16
+  },
+  "recording": {
+    "history_mode": "every_iteration"
+  },
+  "cases": [
+    {
+      "id": "ga_binary_one_point",
+      "family": "ga",
+      "representation": "binary",
+      "variant": "one_point",
+      "parameters": {
+        "population_size": 100,
+        "tournament_size": 3,
+        "elite_count": 2,
+        "crossover_probability": 1.0,
+        "bits_per_coordinate": 24,
+        "bit_mutation_probability": 0.01,
+        "crossover_type": "OnePoint"
+      }
+    },
+    {
+      "id": "ga_binary_uniform",
+      "family": "ga",
+      "representation": "binary",
+      "variant": "uniform",
+      "parameters": {
+        "population_size": 100,
+        "tournament_size": 3,
+        "elite_count": 2,
+        "crossover_probability": 1.0,
+        "bits_per_coordinate": 24,
+        "bit_mutation_probability": 0.01,
+        "crossover_type": "Uniform"
+      }
+    },
+    {
+      "id": "ga_real_arithmetic",
+      "family": "ga",
+      "representation": "real",
+      "variant": "arithmetic",
+      "parameters": {
+        "population_size": 100,
+        "tournament_size": 3,
+        "elite_count": 2,
+        "crossover_probability": 1.0,
+        "gene_mutation_probability": 0.1,
+        "sigma": 0.1,
+        "sbx_distribution_index": 2.0,
+        "crossover_type": "Arithmetic"
+      }
+    },
+    {
+      "id": "ga_real_sbx",
+      "family": "ga",
+      "representation": "real",
+      "variant": "sbx",
+      "parameters": {
+        "population_size": 100,
+        "tournament_size": 3,
+        "elite_count": 2,
+        "crossover_probability": 1.0,
+        "gene_mutation_probability": 0.1,
+        "sigma": 0.1,
+        "sbx_distribution_index": 2.0,
+        "crossover_type": "Sbx"
+      }
+    },
+    {
+      "id": "pso_unit_chi",
+      "family": "pso",
+      "representation": null,
+      "variant": "unit_chi",
+      "parameters": {
+        
+        "swarm_size": 100,
+        "c1": 2.05,
+        "c2": 2.05,
+        "constant_inertia_weight": 1.0,
+        "dynamic_constriction_chi_max": 1.0,
+        "velocity_limit_ratio": 0.2,
+        "constriction_factor_type": "Unit"
+      }
+    },
+    {
+      "id": "pso_canonical_chi",
+      "family": "pso",
+      "representation": null,
+      "variant": "canonical_chi",
+      "parameters": {
+        "swarm_size": 100,
+        "c1": 2.05,
+        "c2": 2.05,
+        "constant_inertia_weight": 1.0,
+        "dynamic_constriction_chi_max": 1.0,
+        "velocity_limit_ratio": 0.2,
+        "constriction_factor_type": "Canonical"
+      }
+    }
+  ]
+}

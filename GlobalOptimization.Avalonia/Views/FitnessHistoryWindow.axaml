@@ -11,8 +11,6 @@
   <Grid RowDefinitions="Auto,*" Margin="16">
     <StackPanel Grid.Row="0" Margin="0,0,0,12">
       <TextBlock FontSize="18" FontWeight="SemiBold" Text="История лучшего фитнеса" />
-      <TextBlock Foreground="Gray"
-                 Text="На графике отображаются только фактические точки после каждого нажатия кнопки расчёта, поэтому шаги 1, 10 и 20 дадут неравномерные точки по оси итераций." />
     </StackPanel>
 
     <controls:FitnessChartControl Grid.Row="1" Points="{Binding History}" />

@@ -10,7 +10,7 @@
         Height="950"
         MinWidth="1250"
         MinHeight="820"
-        Title="Глобальная оптимизация — Avalonia GUI">
+        Title="Глобальная оптимизация">
 
   <Design.DataContext>
     <vm:MainWindowViewModel />
@@ -31,8 +31,6 @@
                      AcceptsReturn="True"
                      TextWrapping="Wrap"
                      MinHeight="78" />
-            <TextBlock Foreground="Gray"
-                       Text="Поддерживаются: +, -, *, /, ^, скобки, sin, cos, exp, sqrt." />
           </StackPanel>
         </Border>
 
@@ -200,14 +198,12 @@
 
     <Grid Grid.Column="1"
           Margin="0,16,16,16"
-          RowDefinitions="Auto,*,1.05*,Auto"
+          RowDefinitions="Auto,1.0*,1.25*"
           RowSpacing="12">
       <Border Grid.Row="0" Classes="card" Margin="0">
         <Grid ColumnDefinitions="*,Auto,Auto,Auto">
           <StackPanel>
             <TextBlock Classes="section-title" Text="Карта точек на плоскости" />
-            <TextBlock Foreground="Gray"
-                       Text="Колесо мыши — масштаб, зажатая левая кнопка — перемещение." />
           </StackPanel>
 
           <Button Grid.Column="1"
@@ -236,15 +232,20 @@
       </Border>
 
       <Border Grid.Row="2" Classes="card" Margin="0">
-        <StackPanel>
-          <TextBlock Classes="section-title" Text="Точки популяции / роя" />
-          <DataGrid ItemsSource="{Binding TablePoints}"
+        <Grid RowDefinitions="Auto,*">
+          <TextBlock Grid.Row="0"
+                     Classes="section-title"
+                     Text="Точки популяции / роя" />
+
+          <DataGrid Grid.Row="1"
+                    Margin="0,8,0,0"
+                    ItemsSource="{Binding TablePoints}"
                     AutoGenerateColumns="False"
                     IsReadOnly="True"
                     CanUserSortColumns="True"
                     HeadersVisibility="Column"
                     GridLinesVisibility="Horizontal"
-                    MinHeight="260">
+                    VerticalAlignment="Stretch">
             <DataGrid.Columns>
               <DataGridTextColumn Header="#"
                                   Binding="{Binding Rank}"
@@ -260,11 +261,7 @@
                                   Width="1.2*" />
             </DataGrid.Columns>
           </DataGrid>
-        </StackPanel>
-      </Border>
-
-      <Border Grid.Row="3" Classes="card" Margin="0">
-        <TextBlock Text="{Binding StatusMessage}" />
+        </Grid>
       </Border>
     </Grid>
   </Grid>

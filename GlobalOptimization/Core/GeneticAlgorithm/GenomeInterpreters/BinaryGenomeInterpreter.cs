@@ -82,4 +82,7 @@ public sealed class BinaryGenomeInterpreter : IGenomeInterpreter<BinaryGenome>
         var fitness = Evaluate(genome);
         return new Individual<BinaryGenome>(genome, fitness);
     }
+    
+    public void ResetStatistics()
+        => EvaluationCount = 0;
 }

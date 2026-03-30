@@ -70,4 +70,7 @@ public sealed class RealGenomeInterpreter : IGenomeInterpreter<RealGenome>
         var fitness = Evaluate(genome);
         return new Individual<RealGenome>(genome, fitness);
     }
+
+    public void ResetStatistics()
+        => EvaluationCount = 0;
 }

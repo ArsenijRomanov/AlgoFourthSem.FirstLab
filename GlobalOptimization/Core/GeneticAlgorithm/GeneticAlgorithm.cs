@@ -162,6 +162,7 @@ public sealed class GeneticAlgorithm<TGenome> where TGenome : IGenome
         BestIndividual = null;
         Iteration = 0;
         IsInitialized = false;
+        _genomeInterpreter.ResetStatistics();
     }
 
     private Individual<TGenome> CreateIndividual(TGenome genome)

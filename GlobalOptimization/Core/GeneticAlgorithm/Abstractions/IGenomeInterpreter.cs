@@ -7,4 +7,5 @@ public interface IGenomeInterpreter<TGenome> where TGenome : IGenome
     double Evaluate(TGenome genome);
     IReadOnlyList<double> GetCoordinates(TGenome genome);
     Individual<TGenome> CreateIndividual(TGenome genome);
+    void ResetStatistics();
 }

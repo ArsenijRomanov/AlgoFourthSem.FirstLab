@@ -1,0 +1,200 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:GlobalOptimization.Avalonia.ViewModels"
+        xmlns:controls="using:GlobalOptimization.Avalonia.Controls"
+        x:Class="GlobalOptimization.Avalonia.Views.MainWindow"
+        mc:Ignorable="d"
+        Width="1500"
+        Height="950"
+        MinWidth="1250"
+        MinHeight="820"
+        Title="Глобальная оптимизация — Avalonia GUI">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <Grid ColumnDefinitions="380,*" RowDefinitions="*">
+    <ScrollViewer Grid.Column="0"
+                  Margin="0,16,0,16"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled"
+                  AllowAutoHide="False">
+      <StackPanel Margin="16,0,16,48" Spacing="12">
+        <Border Classes="card">
+          <StackPanel Spacing="8">
+            <TextBlock Classes="section-title" Text="Постановка задачи" />
+            <TextBlock Classes="field-label" Text="Функция f(x, y)" />
+            <TextBox Text="{Binding FunctionExpression}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="78" />
+            <TextBlock Foreground="Gray" Text="Поддерживаются: +, -, *, /, ^, скобки, sin, cos, exp, sqrt." />
+          </StackPanel>
+        </Border>
+
+        <Border Classes="card">
+          <StackPanel Spacing="10">
+            <TextBlock Classes="section-title" Text="Диапазон поиска" />
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+              <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock Classes="field-label" Text="X min" />
+                <NumericUpDown Value="{Binding XMin}" Increment="0.5" FormatString="0.###" />
+              </StackPanel>
+
+              <StackPanel Grid.Row="0" Grid.Column="1">
+                <TextBlock Classes="field-label" Text="X max" />
+                <NumericUpDown Value="{Binding XMax}" Increment="0.5" FormatString="0.###" />
+              </StackPanel>
+
+              <StackPanel Grid.Row="1" Grid.Column="0">
+                <TextBlock Classes="field-label" Text="Y min" />
+                <NumericUpDown Value="{Binding YMin}" Increment="0.5" FormatString="0.###" />
+              </StackPanel>
+
+              <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Classes="field-label" Text="Y max" />
+                <NumericUpDown Value="{Binding YMax}" Increment="0.5" FormatString="0.###" />
+              </StackPanel>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <Border Classes="card">
+          <StackPanel Spacing="10">
+            <TextBlock Classes="section-title" Text="Настройка алгоритма" />
+
+            <StackPanel>
+              <TextBlock Classes="field-label" Text="Алгоритм" />
+              <ComboBox ItemsSource="{Binding AlgorithmOptions}" SelectedItem="{Binding SelectedAlgorithm}" />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding IsGeneticAlgorithm}">
+              <TextBlock Classes="field-label" Text="Размер популяции" />
+              <NumericUpDown Value="{Binding PopulationSize}" Increment="10" Minimum="1" FormatString="0" />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding IsGeneticAlgorithm}">
+              <TextBlock Classes="field-label" Text="Кодирование генов" />
+              <ComboBox ItemsSource="{Binding GenomeEncodingOptions}" SelectedItem="{Binding SelectedGenomeEncoding}" />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding IsGeneticAlgorithm}">
+              <TextBlock Classes="field-label" Text="Кроссинговер (вещественное кодирование)" />
+              <ComboBox ItemsSource="{Binding RealCrossoverOptions}"
+                        SelectedItem="{Binding SelectedRealCrossover}"
+                        IsVisible="{Binding IsRealEncoding}" />
+              <ComboBox ItemsSource="{Binding BinaryCrossoverOptions}"
+                        SelectedItem="{Binding SelectedBinaryCrossover}"
+                        IsVisible="{Binding IsBinaryEncoding}" />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding IsGeneticAlgorithm}">
+              <TextBlock Classes="field-label" Text="Число бит на координату" />
+              <NumericUpDown Value="{Binding BitsPerCoordinate}"
+                             Increment="1"
+                             Minimum="1"
+                             FormatString="0"
+                             IsVisible="{Binding IsBinaryEncoding}" />
+              <TextBlock IsVisible="{Binding IsRealEncoding}" Foreground="Gray" Text="Для вещественного кодирования не используется." />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding IsParticleSwarmOptimization}">
+              <TextBlock Classes="field-label" Text="Размер роя" />
+              <NumericUpDown Value="{Binding SwarmSize}" Increment="10" Minimum="1" FormatString="0" />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding IsParticleSwarmOptimization}">
+              <TextBlock Classes="field-label" Text="Коэффициент сжатия" />
+              <ComboBox ItemsSource="{Binding ConstrictionFactorOptions}"
+                        SelectedItem="{Binding SelectedConstrictionFactorType}" />
+            </StackPanel>
+
+            <StackPanel>
+              <TextBlock Classes="field-label" Text="Итераций за одно нажатие" />
+              <NumericUpDown Value="{Binding IterationsPerRun}" Increment="1" Minimum="0" FormatString="0" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,8,0,0">
+              <Button Classes="action" Grid.Column="0" Content="Рассчитать" Command="{Binding RunCommand}" />
+              <Button Classes="action" Grid.Column="1" Content="Сброс" Command="{Binding ResetCommand}" />
+            </Grid>
+
+            <Button Classes="action"
+                    Margin="0,12,0,0"
+                    Content="Открыть график фитнеса"
+                    IsEnabled="{Binding HasHistory}"
+                    Click="OpenFitnessHistoryClick" />
+          </StackPanel>
+        </Border>
+
+        <Border Classes="card">
+          <StackPanel Spacing="8">
+            <TextBlock Classes="section-title" Text="Текущий результат" />
+            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+              <TextBlock Grid.Row="0" Grid.Column="0" Classes="field-label" Text="Итерации:" />
+              <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentIteration}" />
+
+              <TextBlock Grid.Row="1" Grid.Column="0" Classes="field-label" Text="Вычислений функции:" />
+              <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding EvaluationCount}" />
+
+              <TextBlock Grid.Row="2" Grid.Column="0" Classes="field-label" Text="Лучший фитнес:" />
+              <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding BestFitnessText}" />
+
+              <TextBlock Grid.Row="3" Grid.Column="0" Classes="field-label" Text="Лучшая точка:" />
+              <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding BestPointText}" />
+            </Grid>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+
+    <Grid Grid.Column="1" Margin="0,16,16,16" RowDefinitions="Auto,*,1.05*,Auto" RowSpacing="12">
+      <Border Grid.Row="0" Classes="card" Margin="0">
+        <Grid ColumnDefinitions="*,Auto,Auto,Auto">
+          <StackPanel>
+            <TextBlock Classes="section-title" Text="Карта точек на плоскости" />
+            <TextBlock Foreground="Gray" Text="Колесо мыши — масштаб, зажатая левая кнопка — перемещение." />
+          </StackPanel>
+
+          <Button Grid.Column="1" Margin="8,0,0,0" Content="+" Click="ZoomInPlotClick" />
+          <Button Grid.Column="2" Margin="8,0,0,0" Content="-" Click="ZoomOutPlotClick" />
+          <Button Grid.Column="3" Margin="8,0,0,0" Content="Сброс масштаба" Click="ResetPlotViewClick" />
+        </Grid>
+      </Border>
+
+      <Border Grid.Row="1" Classes="card" Margin="0">
+        <controls:ScatterPlotControl x:Name="ScatterPlot"
+                                     Points="{Binding PlotPoints}"
+                                     HighlightedPoint="{Binding HighlightedPoint}"
+                                     WorldXMin="{Binding XMin}"
+                                     WorldXMax="{Binding XMax}"
+                                     WorldYMin="{Binding YMin}"
+                                     WorldYMax="{Binding YMax}" />
+      </Border>
+
+      <Border Grid.Row="2" Classes="card" Margin="0">
+        <StackPanel>
+          <TextBlock Classes="section-title" Text="Точки популяции / роя" />
+          <DataGrid ItemsSource="{Binding TablePoints}"
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    CanUserSortColumns="True"
+                    HeadersVisibility="Column"
+                    GridLinesVisibility="Horizontal"
+                    MinHeight="260">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="#" Binding="{Binding Rank}" Width="70" />
+              <DataGridTextColumn Header="X" Binding="{Binding X, StringFormat={}{0:G8}}" Width="*" />
+              <DataGridTextColumn Header="Y" Binding="{Binding Y, StringFormat={}{0:G8}}" Width="*" />
+              <DataGridTextColumn Header="Fitness" Binding="{Binding Fitness, StringFormat={}{0:G10}}" Width="1.2*" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </StackPanel>
+      </Border>
+
+      <Border Grid.Row="3" Classes="card" Margin="0">
+        <TextBlock Text="{Binding StatusMessage}" />
+      </Border>
+    </Grid>
+  </Grid>
+</Window>

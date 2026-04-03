@@ -114,8 +114,7 @@ public sealed class GeneticAlgorithm<TGenome> where TGenome : IGenome
 
     public void Step(int iterations)
     {
-        if (iterations < 0)
-            throw new ArgumentOutOfRangeException(nameof(iterations));
+        ArgumentOutOfRangeException.ThrowIfNegative(iterations);
 
         for (int i = 0; i < iterations; i++)
             Step();

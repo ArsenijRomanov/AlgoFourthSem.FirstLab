@@ -73,5 +73,10 @@ secrets.json
 # Generated files
 Generated/
 *.generated.cs
+*.csv*
+*.png
+manifest.json
+runs.csv
+
 
 all_code_dump.txt

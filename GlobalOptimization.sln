@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalOptimization.Avalonia
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analysis", "Analysis\Analysis.csproj", "{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParameterSweep", "ParameterSweep\ParameterSweep.csproj", "{AE5201BE-EC80-4705-BB76-B80D8660736C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E258118-BA63-43F7-94BE-DD8F6F1AF38C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE5201BE-EC80-4705-BB76-B80D8660736C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5201BE-EC80-4705-BB76-B80D8660736C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5201BE-EC80-4705-BB76-B80D8660736C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5201BE-EC80-4705-BB76-B80D8660736C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
